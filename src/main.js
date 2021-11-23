@@ -6,6 +6,21 @@ import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 import locale from 'element-ui/lib/locale/lang/en' // lang i18n
 
+import myComponent from './views/instruct/index.vue'
+Vue.use(myComponent)
+Vue.directive('anti-shake', {
+    inserted: (el, binding) => {
+        let timer = null
+        if (binding.arg === 'none') {
+            el.addEventListener('keypress', () => {
+                if (timer) clearTimeout(timer)
+                timer = setTimeout(() => {
+                    binding.value()
+                }, 300)
+            })
+        }
+    }
+})
 import '@/styles/index.scss' // global css
 
 import App from './App'
@@ -24,20 +39,20 @@ import '@/permission' // permission control
  * please remove it before going online ! ! !
  */
 if (process.env.NODE_ENV === 'production') {
-  const { mockXHR } = require('../mock')
-  mockXHR()
+    const { mockXHR } = require('../mock')
+    mockXHR()
 }
 
 // set ElementUI lang to EN
 Vue.use(ElementUI, { locale })
-// 如果想要中文版 element-ui，按如下方式声明
-// Vue.use(ElementUI)
+    // 如果想要中文版 element-ui，按如下方式声明
+    // Vue.use(ElementUI)
 
 Vue.config.productionTip = false
 
 new Vue({
-  el: '#app',
-  router,
-  store,
-  render: h => h(App)
+    el: '#app',
+    router,
+    store,
+    render: h => h(App)
 })
