@@ -6,6 +6,9 @@ import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 import locale from 'element-ui/lib/locale/lang/en' // lang i18n
 
+import Index from '@/views/dialog/file/index.js'
+Vue.use(Index)
+
 import myComponent from './views/instruct/index.vue'
 Vue.use(myComponent)
 Vue.directive('anti-shake', {

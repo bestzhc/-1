@@ -114,6 +114,17 @@ export const constantRoutes = [{
         }]
     },
     {
+        path: '/dialog',
+        component: Layout,
+        children: [{
+            path: 'index',
+            name: 'dialog',
+            component: () =>
+                import ('@/views/dialog/index.vue'),
+            meta: { title: '全局弹窗', icon: 'form' }
+        }]
+    },
+    {
         path: '/nested',
         component: Layout,
         redirect: '/nested/menu1',
